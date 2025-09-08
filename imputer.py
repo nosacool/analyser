@@ -10,7 +10,7 @@ def imputer(csv_path: str, target_column: str) -> pd.DataFrame:
     if target_column not in df.columns:
         raise ValueError(f"Column '{target_column}' not found in dataset.")
     
-    df = df.select_dtypes(include=['category']).copy()
+    df = df.select_dtypes(include=['object']).copy()
     print(df)
     
     imputer = IterativeImputer(random_state=42)
@@ -20,5 +20,3 @@ def imputer(csv_path: str, target_column: str) -> pd.DataFrame:
     df[target_column] = numeric_imputed[target_column]
     
     return df
-
-imputer('Top Movies.csv', 'My Rating')
