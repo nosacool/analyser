@@ -20,3 +20,5 @@ def imputer(csv_path: str, target_column: str) -> pd.DataFrame:
     df[target_column] = numeric_imputed[target_column]
     
     return df
+
+imputer('Top Movies.csv', 'My Rating')
