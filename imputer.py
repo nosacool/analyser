@@ -1,7 +1,3 @@
-import pandas as pd
-from sklearn.experimental import enable_iterative_imputer  # noqa
-from sklearn.impute import IterativeImputer
-
 def imputer(csv_path: str, target_column: str) -> pd.DataFrame:
     
     # Load data
@@ -10,8 +6,7 @@ def imputer(csv_path: str, target_column: str) -> pd.DataFrame:
     if target_column not in df.columns:
         raise ValueError(f"Column '{target_column}' not found in dataset.")
     
-    df = df.select_dtypes(include=['object']).copy()
-    print(df)
+    df = df.select_dtypes(include=['number']).copy()
     
     imputer = IterativeImputer(random_state=42)
     imputed_array = imputer.fit_transform(df)
